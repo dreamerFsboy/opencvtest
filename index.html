@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScanDoc</title>
+</head>
+<style>
+  #previewSection {
+    width: 90%;
+    height: 45vh;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #previewSection .previewDiv {
+    width: calc(50% - 12px);
+    height: 100%;
+    display: flex;
+    float: left;
+    border: 3px solid black;
+  }
+
+  #streamVideo,
+  #drawOutput,
+  #videoOutput {
+    margin: auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  #resultSection {
+    width: 90%;
+    height: 45vh;
+    display: flex;
+    margin: 8px auto;
+    position: relative;
+    justify-content: space-evenly;
+  }
+
+  #editSection,
+  #outputSection {
+    width: calc(50% - 12px);
+    height: 100%;
+    display: flex;
+    float: left;
+    position: relative;
+    align-items: center;
+    border: 3px solid black;
+  }
+
+  #editSection canvas,
+  #outputSection canvas {
+    margin: 8px auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    z-index: 200;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+</style>
+
+<body>
+
+  <div style="width: 80%;height:4vh;margin:8px auto;">
+    <button id="rotate">旋轉</button>
+    <button id="snapShot">截圖</button>
+    <button id="correction">校正</button>
+    <button id="reset">重置</button>
+
+    <select name="sheetType" id="sheetType" style="display: none;">
+      <option value="A8">A8</option>
+      <option value="A4">A4</option>
+      <option value="B4">A4</option>
+    </select>
+  </div>
+
+  <div id="previewSection">
+
+    <div class="previewDiv" style="display: flex;">
+      <video id="streamVideo">
+
+      </video>
+    </div>
+
+    <div class="previewDiv" style="display: none;">
+      <canvas id="videoOutput">
+
+      </canvas>
+    </div>
+
+    <div class="previewDiv" style="display: flex;">
+      <canvas id="drawOutput">
+
+      </canvas>
+    </div>
+
+  </div>
+
+  <div id="resultSection">
+    <div id="editSection">
+      <canvas id="saveCanvas" style="z-index: 100;">
+
+      </canvas>
+      <canvas id="editCanvas" style="z-index: 200;">
+
+      </canvas>
+    </div>
+    <div id="outputSection">
+      <canvas id="fixCanvas" style="z-index: 100;">
+
+      </canvas>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+<script src="opencv.js"></script>
+<script src="main.js" type="module"></script>
+
+<!-- not use web worker -->
